@@ -1,7 +1,7 @@
 # Create a Azure Kubernetes cluster
-# az group create --location eastus --resource-group russ-aks
-# az aks create --resource-group russ-aks --name demo-cluster --node-count 1
-# az aks get-credentials --name demo-cluster --resource-group russ-aks
+az group create --location eastus --resource-group russ-aks
+az aks create --resource-group russ-aks --name demo-cluster --node-count 1
+az aks get-credentials --name demo-cluster --resource-group russ-aks
 
 # Get your TRIGGERcmd token
 export TOKEN=$(cat ~/.TRIGGERcmdData/token.tkn)
@@ -36,3 +36,6 @@ kubectl create configmap commands-config --from-literal=commands='
 # Create the tcmd deployment
 kubectl delete deploy tcmd-deployment > /dev/null 2>&1
 kubectl apply -f ./kubernetes_manifests
+
+# Watch for the creation of the Nginx pod
+watch kubectl get po
