@@ -23,8 +23,8 @@ kubectl create configmap commands-config --from-literal=commands='
     }, 
     {
         "trigger": "Run nginx",
-        "command": "kubectl run nginx --image=nginx",
-        "offCommand": "kubectl delete po nginx",
+        "command": "/kubectl run nginx --image=nginx",
+        "offCommand": "/kubectl delete po nginx",
         "ground": "foreground",
         "voice": "engine x"
     }
