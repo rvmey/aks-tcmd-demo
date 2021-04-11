@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tcmd-deployment
+  labels:
+    app: tcmd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tcmd
+  template:
+    metadata:
+      labels:
+        app: tcmd
+    spec:
+      containers:
+      - name: tcmd
+        image: rvmey/triggercmdagent
+        env:
+          - name: TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: tcmd-secret
+                key: token
+          - name: COMPUTERID
+            valueFrom:
+              secretKeyRef:
+                name: tcmd-secret
+                key: computerid
+          - name: COMMANDS
+            valueFrom:
+              configMapKeyRef:
+                # The ConfigMap containing the value you want to assign to COMMANDS
+                name: commands-config
+                # Specify the key associated with the value
+                key: commands
