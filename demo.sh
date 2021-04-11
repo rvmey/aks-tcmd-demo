@@ -18,7 +18,7 @@ kubectl create configmap commands-config --from-literal=commands='
 [
     {
         "trigger": "Install Prereqs",
-        "command": "wget https://raw.githubusercontent.com/rvmey/aks-tcmd-demo/main/tcmd_container_scripts/prereqs.sh | bash",
+        "command": "wget -O - https://raw.githubusercontent.com/rvmey/aks-tcmd-demo/main/tcmd_container_scripts/prereqs.sh | bash",
         "ground": "foreground"
     }, 
     {
